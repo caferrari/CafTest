@@ -1,0 +1,32 @@
+{
+    "name":        "caferrari/caf-test",
+    "description": "Zend Framework 2 Module for TDD",
+    "type":        "library",
+    "license":     "MIT",
+    "keywords":    [
+        "doctrine",
+        "module",
+        "zf2"
+    ],
+    "authors": [
+        {
+            "name": "Carlos André Ferrari",
+            "email": "caferrari@gmail.com",
+            "homepage": "http://ferrari.eti.br/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php":                                ">=5.3.3",
+        "zendframework/zend-loader":          ">2.2",
+        "zendframework/zend-mvc":             ">2.2",
+        "zendframework/zend-http":            ">2.2",
+        "zendframework/zend-view":            ">2.2",
+        "zendframework/zend-servicemanager":  ">2.2"
+    },
+    "autoload" : {
+        "psr-0": {
+            "CafTest\\": "src/"
+        }
+    }
+}
