@@ -16,10 +16,10 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
 
-        $path = stream_resolve_include_path(__DIR__ . '/../../../../../vendor');
+        //$path = stream_resolve_include_path(__DIR__ . '/../../../../../vendor');
 
-        shell_exec($path . '/bin/doctrine-module orm:schema-tool:drop --force');
-        shell_exec($path . '/bin/doctrine-module orm:schema-tool:create');
+        //shell_exec($path . '/bin/doctrine-module orm:schema-tool:drop --force');
+        //shell_exec($path . '/bin/doctrine-module orm:schema-tool:create');
 
         $pathDir = getcwd()."/";
 
