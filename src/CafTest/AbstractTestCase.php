@@ -16,11 +16,6 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
 
-        //$path = stream_resolve_include_path(__DIR__ . '/../../../../../vendor');
-
-        //shell_exec($path . '/bin/doctrine-module orm:schema-tool:drop --force');
-        //shell_exec($path . '/bin/doctrine-module orm:schema-tool:create');
-
         $pathDir = getcwd()."/";
 
         $config = include $pathDir.'config/test.config.php';
@@ -41,12 +36,6 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
     {
         parent::setup();
         $this->application = self::$serviceManager->get('Application');
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-
     }
 
 }

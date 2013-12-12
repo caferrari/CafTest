@@ -5,16 +5,30 @@ namespace CafTest;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\Mvc\MvcEvent;
+use Doctrine\ORM\Tools\SchemaTool;
 
 class ModelTestCase extends AbstractTestCase
 {
 
-    protected $service = 'Doctrine\ORM\EntityManager';
-
     /**
      * @var EntityManager
      */
-    protected $em;
+    static $em;
+
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+
+        $em = self::$em = self::$serviceManager->get('Doctrine\ORM\EntityManager');
+
+        $schemaTool = new SchemaTool($em);
+
+        $cmf = $em->getMetadataFactory();
+        $classes = $cmf->getAllMetadata();
+
+        $schemaTool->dropDatabase();
+        $schemaTool->createSchema($classes);
+    }
 
     public function tearDown()
     {
@@ -23,37 +37,7 @@ class ModelTestCase extends AbstractTestCase
 
     public function getEm()
     {
-        if (isset($this->em)) {
-            return $this->em;
-
-        }
-        return $this->em = $this->application->getServiceManager()->get($this->service);
+        return self::$em;
     }
 
-    public function getEmMock()
-    {
-        $emMock = $this->getMock(
-            '\Doctrine\ORM\EntityManager',
-            array('getRepository', 'getClassMetadata', 'persist', 'flush'), array(), '', false
-        );
-
-        $emMock->expects($this->any())
-            ->method('persist')
-            ->will(
-                $this->returnCallback(
-                    function ($entity) {
-                        if (method_exists($entity, 'prePersist')) {
-                            $entity->prePersist();
-                        }
-                        return $entity;
-                    }
-                )
-            );
-
-        $emMock->expects($this->any())
-            ->method('flush')
-            ->will($this->returnValue(null));
-
-        return $emMock;
-    }
 }
