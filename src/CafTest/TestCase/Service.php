@@ -1,13 +1,11 @@
 <?php
 
-namespace CafTest;
+namespace CafTest\TestCase;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\Mvc\Service\ServiceManagerConfig;
-use Zend\Mvc\MvcEvent;
 use Doctrine\ORM\Tools\SchemaTool;
+use CafTest\AbstractTestCase;
 
-class ModelTestCase extends AbstractTestCase
+abstract class Service extends AbstractTestCase
 {
 
     /**

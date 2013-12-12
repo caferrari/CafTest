@@ -1,6 +1,8 @@
 <?php
 
-namespace CafTest;
+namespace CafTest\TestCase;
+
+use CafTest\AbstractTestCase;
 
 use Zend\Http\Request;
 use Zend\Http\Response;
@@ -9,7 +11,7 @@ use Zend\Mvc\Router\RouteMatch;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Resolver;
 
-abstract class AbstractControllerTestCase extends TestCase
+abstract class Controller extends AbstractTestCase
 {
     /**
      * The ActionController we are testing
